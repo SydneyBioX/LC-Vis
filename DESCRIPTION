@@ -15,5 +15,5 @@ Imports: shiny, shinyjs, shinythemes, WGCNA, dynamicTreeCut, reshape2,
 Suggests: knitr, devtools, roxygen2
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-07-14 10:45:19 UTC; Lenovo
+Packaged: 2020-07-14 12:07:01 UTC; Lenovo
 Depends: R (>= 3.5.0)

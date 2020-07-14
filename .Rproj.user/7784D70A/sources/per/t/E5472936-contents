@@ -2,7 +2,7 @@
 #' @import shiny
 #' @import shinyjs
 #' @import shinythemes
-#' @import WGCNA
+#' @importFrom WGCNA labels2colors plotDendroAndColors
 #' @import dynamicTreeCut
 #' @import reshape2
 #' @import ggplot2
