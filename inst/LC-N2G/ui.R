@@ -19,27 +19,10 @@
 #    }
 #}
 
-#' @import shiny
-#' @import shinyjs
-#' @import shinythemes
-#' @import WGCNA
-#' @import dynamicTreeCut
-#' @import reshape2
-#' @import ggplot2
-#' @import plotly
-#' @import fields
-#' @import visNetwork
-#' @import grid
-#' @import tidyverse
-#' @import DT
-#' @import directlabels
-#' @import psych
-#' @import GA
-#' @import mclust
-#'
+
 source("utils.R")
 getwd()
-shinyUI(fluidPage(theme = shinytheme("cerulean"),
+shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                   shinyjs::useShinyjs(),
         navbarPage("LC-N2G",
                    id = "LCN2G",
