@@ -2,7 +2,7 @@
 #pkgs<- c("shiny","shinyjs","shinythemes","WGCNA","dynamicTreeCut","reshape2",
 #         "ggplot2","plotly","fields","visNetwork","grid","tidyverse",
 #         "DT","directlabels","psych","GA","mclust")
-#pkg_type <- c("C","C","C","B","C","C","C","C","C","C","C","C","C","C","C","C","C")
+#pkg_type <- c("C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C")
 
 #if(!require("BiocManager")) install.packages("BiocManager",update = F,ask = F)
 #for (i in 1:length(pkgs)){
@@ -20,7 +20,7 @@
 #}
 source("utils.R")
 getwd()
-shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
+shinyUI(fluidPage(theme = shinytheme("cerulean"),
                   shinyjs::useShinyjs(),
         navbarPage("LC-N2G",
                    id = "LCN2G",
@@ -31,13 +31,13 @@ shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                    tabPanel("Data Preprocess",
                             sidebarLayout(
                               sidebarPanel(
-                                    fileInput("GE","Browser your gene expression input file(.csv, row sample)", accept = ".csv"),
-                                    fileInput("N","Browser your nutrition input file(.csv, row sample)", accept = ".csv"),
-                                    numericInput("mcpm","Filter out gene expression(cpm) below:",5),
-                                    numericInput("maxcpm","Filter out gene expression(cpm) above:",500),
-                                    numericInput("mvar","Filter out gene expression(cpm) sd below :",0.1),
-                                    radioButtons("mnorm","Normalization method",choices = c("cpm" = "cpm","log2 cpm" = "lcpm","none" = "nonorm"),selected = "nonorm"),
-                                    sliderInput("mabscor","Filter out gene expression(cpm) maxium absolute correlation with nutrition variables below:",min = 0,max = 1,step = 0.05,value = 0.6),
+                                    fileInput("GE","Browser your gene expression input file (.csv, row sample)", accept = ".csv"),
+                                    fileInput("N","Browser your nutrition input file (.csv, row sample)", accept = ".csv"),
+                                    numericInput("mcpm","Filter out gene expression (cpm) below:",5),
+                                    numericInput("maxcpm","Filter out gene expression (cpm) above:",500),
+                                    numericInput("mvar","Filter out gene expression (cpm) sd below :",0.1),
+                                    radioButtons("mnorm","Transformation method",choices = c("cpm" = "cpm","log2 cpm" = "lcpm","none" = "nonorm"),selected = "nonorm"),
+                                    sliderInput("mabscor","Filter out gene expression (cpm) maxium absolute correlation with nutrition variables below:",min = 0,max = 1,step = 0.05,value = 0.6),
                                     actionButton("preprocess", "Analysis")
                               ),
                               mainPanel(
@@ -54,7 +54,7 @@ shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                                   helpText("Paramerters for clustering using gene-gene relationship:"),
                                   radioButtons("mclust1","Cluster method:",
                                                c("Cluster by gene expression" = "m0",
-                                                 "Cluster by gene-gene correlation(WGCAN) " = "m1"),selected = "m1")
+                                                 "Cluster by gene-gene correlation (WGCAN) " = "m1"),selected = "m1")
                                 ),
                                 wellPanel(
                                   helpText("Parameters for clustering using gene-nutrition relationship:"),
@@ -64,17 +64,17 @@ shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                                 ),
                                 wellPanel(
                                   helpText("Other Parameters for clustering"),
-                                  sliderInput("alpha","mix coefficient for two kind of cluster method(0 for total gene-gene,1 for total gene-nutrition)",
+                                  sliderInput("alpha","Mix coefficient for two kind of cluster method (0 for gene-gene relationship,1 for gene-nutrition relationship)",
                                               min = 0,max = 1,step = 0.05,value = 0.5),
                                   radioButtons("scaledist","Scaling method for distance matrix:",
                                                c("No scaling" = "m0",
-                                                 "Linear Transformation scaling" = "m1",
-                                                 "Exponential Transformation scaling" = "m2"),selected = "m2"),
-                                  radioButtons("mcut","Tree Cutting Method:",
+                                                 "Linear transformation scaling" = "m1",
+                                                 "Exponential transformation scaling" = "m2"),selected = "m2"),
+                                  radioButtons("mcut","Tree cutting method:",
                                                c("Dynamic tree cut" = "c1",
                                                  "By threshold" = "c2")),
                                   textInput("k","Desired number of groups",value = 10),
-                                  sliderInput("thresh","threshold of correlation for network visualization for clustering result:",
+                                  sliderInput("thresh","Threshold of correlation for network visualization for clustering result:",
                                               min = 0,max = 1,step = 0.05,value = 0.5),
                                   actionButton("cluster", "Analysis")
                                 )
@@ -84,7 +84,7 @@ shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                                   id = "Clust_output",
                                   tabPanel("Dendro",plotOutput("denro"),DT::dataTableOutput("clusttab")),
                                   tabPanel("Table",DT::dataTableOutput("exprtab")),
-                                  tabPanel("Summary",visNetwork::visNetworkOutput("vnet",height = "700px"))
+                                  tabPanel("Summary",visNetworkOutput("vnet",height = "700px"))
                                 )
                                 )
                             )),
@@ -93,11 +93,11 @@ shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                             sidebarLayout(
                               sidebarPanel(
                                 wellPanel(
-                                  helpText("Parameters for zaxis"),
-                                  radioButtons("zinput","z-axis choose by:",
+                                  helpText("Parameters for z-axis"),
+                                  radioButtons("zinput","z-axis chosen by:",
                                                c("Cluster" = "z1","Gene name" = "z2")),
                                   uiOutput("zaxis10"),
-                                  textInput("zaxis2","z-axis(gene):",value = "Ucp2"),
+                                  textInput("zaxis2","z-axis (gene):",value = "Ucp2"),
                                   checkboxInput("scalez","zscore for z-axis:",value = T)
                                 ),
 
