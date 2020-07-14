@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594722835479.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "8F1949D8",
+    "lastKnownWriteTime" : 1594723295,
+    "last_content_update" : 1594723295056,
+    "path" : "D:/LCN2G/inst/LC-N2G/ui.R",
+    "project_path" : "inst/LC-N2G/ui.R",
+    "properties" : {
+        "cursorPosition" : "31,15",
+        "scrollLine" : "16"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
