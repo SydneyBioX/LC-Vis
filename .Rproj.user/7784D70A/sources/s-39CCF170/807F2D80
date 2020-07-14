@@ -1,19 +1,19 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1594723215014.000,
+    "created" : 1594724022495.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "4237851057",
-    "id" : "E5472936",
-    "lastKnownWriteTime" : 1594722709,
-    "last_content_update" : 1594722709,
-    "path" : "D:/LCN2G/R/runApp.R",
-    "project_path" : "R/runApp.R",
+    "hash" : "0",
+    "id" : "807F2D80",
+    "lastKnownWriteTime" : 1594724431,
+    "last_content_update" : 1594724431361,
+    "path" : "D:/LCN2G/inst/LC-N2G/ui.R",
+    "project_path" : "inst/LC-N2G/ui.R",
     "properties" : {
-        "cursorPosition" : "1,0",
-        "scrollLine" : "0"
+        "cursorPosition" : "90,29",
+        "scrollLine" : "77"
     },
     "read_only" : false,
     "read_only_alternatives" : [

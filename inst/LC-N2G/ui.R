@@ -20,6 +20,7 @@
 #}
 
 
+
 source("utils.R")
 getwd()
 shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
@@ -86,7 +87,7 @@ shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                                   id = "Clust_output",
                                   tabPanel("Dendro",plotOutput("denro"),DT::dataTableOutput("clusttab")),
                                   tabPanel("Table",DT::dataTableOutput("exprtab")),
-                                  tabPanel("Summary",visNetworkOutput("vnet",height = "700px"))
+                                  tabPanel("Summary",visNetwork::visNetworkOutput("vnet",height = "700px"))
                                 )
                                 )
                             )),
