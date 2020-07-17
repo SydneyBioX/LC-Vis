@@ -9,11 +9,11 @@ Description: It's a shiny app(LC-N2G) to explore the relationship between nutrit
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: shiny, shinyjs, shinythemes, WGCNA, dynamicTreeCut, reshape2,
+Imports: shiny, shinyjs, shinythemes, dynamicTreeCut, reshape2,
         ggplot2, plotly, fields, visNetwork, grid, tidyverse, DT,
         directlabels, psych, GA, mclust
 Suggests: knitr, devtools, roxygen2
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-07-14 12:07:01 UTC; Lenovo
+Packaged: 2020-07-17 04:21:36 UTC; Lenovo
 Depends: R (>= 3.5.0)

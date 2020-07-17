@@ -88,11 +88,11 @@ Clust_dendro <- function(data,mclust1,mclust2,alpha,mcut,scaledist,k = NULL){
     clust_res = dynamicTreeCut::cutreeDynamicTree(clust)
   }
   names(clust_res) = colnames(gene_cor)
-  clust_color = WGCNA::labels2colors(clust_res)
+  clust_color = labels2colors(clust_res)
 
   clust_data = list(clust = clust,clust_res = clust_res,clust_color = clust_color,clust_dist = clust_dist)
   save(clust_data, file = "Clust_data.RData")
-  p1 = WGCNA::plotDendroAndColors(clust, clust_color,
+  p1 = plotDendroAndColors(clust, clust_color,
                       "Module colors",
                       dendroLabels = FALSE, hang = 0.03,
                       addGuide = TRUE, guideHang = 0.05)
@@ -158,7 +158,7 @@ visparameter <- function(topn,thresh,gene_cpm,clust_color,MacroNutrition){
   gene_top = list()
   connection = list()
   for(i in 1:length(temp)){
-    gene_group = t(gene_cpm)[,clust_color == WGCNA::labels2colors(i)]
+    gene_group = t(gene_cpm)[,clust_color == labels2colors(i)]
     topn = min(topn,ncol(gene_group))
     group_pca = prcomp(gene_group,scale. = F)
     eigengene_group = group_pca$x[,1]
@@ -187,8 +187,8 @@ clust_vis <- function(topn,thresh,gene_cpm,clust_color,MacroNutrition){
   nodes2 = data.frame(id = ncol(MacroNutrition):(ncol(MacroNutrition)+length(temp)-1),
                       level = 2,
                       label = "",
-                      title = paste0("Module:",WGCNA::labels2colors(1:length(temp))),
-                      color = WGCNA::labels2colors(1:length(temp))
+                      title = paste0("Module:",labels2colors(1:length(temp))),
+                      color = labels2colors(1:length(temp))
   )
   edge12 = data.frame(from = 0, to = 0, color = "", title = 0)
   for (i in 1:length(connection))
@@ -216,7 +216,7 @@ clust_vis <- function(topn,thresh,gene_cpm,clust_color,MacroNutrition){
                                        level = 3,
                                        label = names(gene_top[[i]][j]),
                                        title = names(gene_top[[i]][j]),
-                                       color = WGCNA::labels2colors(i))
+                                       color = labels2colors(i))
       )
       edge23 = rbind(edge23,data.frame(from = ncol(MacroNutrition) + i - 1,
                                        to = id,
