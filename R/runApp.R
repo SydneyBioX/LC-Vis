@@ -1,20 +1,19 @@
 #' @title shiny app LC-N2G
 #' @import shiny
-#' @import shinyjs
+#' @importFrom  shinyjs useShinyjs
 #' @import shinythemes
 #' @import dynamicTreeCut
 #' @import reshape2
 #' @import ggplot2
-#' @import plotly
 #' @import fields
 #' @import visNetwork
 #' @import grid
 #' @import tidyverse
-#' @import DT
+#' @importFrom  DT dataTableOutput
 #' @import directlabels
-#' @import psych
 #' @import GA
-#' @import mclust
+#' @import gridExtra
+#' @import ggdendro
 
 #' @export run_App
 
@@ -26,4 +25,5 @@ run_App <- function() {
 
   shiny::runApp(appDir, display.mode = "normal")
 }
+
 

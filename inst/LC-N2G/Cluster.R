@@ -92,10 +92,7 @@ Clust_dendro <- function(data,mclust1,mclust2,alpha,mcut,scaledist,k = NULL){
 
   clust_data = list(clust = clust,clust_res = clust_res,clust_color = clust_color,clust_dist = clust_dist)
   save(clust_data, file = "Clust_data.RData")
-  p1 = plotDendroAndColors(clust, clust_color,
-                      "Module colors",
-                      dendroLabels = FALSE, hang = 0.03,
-                      addGuide = TRUE, guideHang = 0.05)
+  p1 = plotDendroAndColors(clust, clust_res)
   return(p1)
 }
 

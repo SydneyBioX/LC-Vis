@@ -12,98 +12,39 @@ standardColors <- function(n = NULL)
 }
 
 
-labels2colors <- function (labels, zeroIsGrey = TRUE, colorSeq = NULL, naColor = "grey",
-          commonColorCode = TRUE)
+labels2colors <- function (clust_res)
 {
-  if (is.null(colorSeq))
-    colorSeq = standardColors()
-  if (is.numeric(labels)) {
-    if (zeroIsGrey)
-      minLabel = 0
-    else minLabel = 1
-    if (any(labels < 0, na.rm = TRUE))
-      minLabel = min(c(labels), na.rm = TRUE)
-    nLabels = labels
-  }
-  else {
-    if (commonColorCode) {
-      factors = factor(c(as.matrix(as.data.frame(labels))))
-      nLabels = as.numeric(factors)
-      dim(nLabels) = dim(labels)
-    }
-    else {
-      labels = as.matrix(as.data.frame(labels))
-      factors = list()
-      for (c in 1:ncol(labels)) factors[[c]] = factor(labels[,
-                                                             c])
-      nLabels = sapply(factors, as.numeric)
-    }
-  }
-  if (max(nLabels, na.rm = TRUE) > length(colorSeq)) {
-    nRepeats = as.integer((max(labels) - 1)/length(colorSeq)) +
-      1
-    warning(paste("labels2colors: Number of labels exceeds number of avilable colors.",
-                  "Some colors will be repeated", nRepeats, "times."))
-    extColorSeq = colorSeq
-    for (rep in 1:nRepeats) extColorSeq = c(extColorSeq,
-                                            paste(colorSeq, ".", rep, sep = ""))
-  }
-  else {
-    nRepeats = 1
-    extColorSeq = colorSeq
-  }
-  colors = rep("grey", length(nLabels))
-  fin = !is.na(nLabels)
-  colors[!fin] = naColor
-  finLabels = nLabels[fin]
-  colors[fin][finLabels != 0] = extColorSeq[finLabels[finLabels !=
-                                                        0]]
-  if (!is.null(dim(labels)))
-    dim(colors) = dim(labels)
-  colors
+  Clust_id <- factor(unique(clust_res))
+  Clust_col <- standardColors(length(Clust_id))
+  Clust_col[Clust_id == 0] <- "gray"
+  names(Clust_col) <-Clust_id
+  Clust_colors <- Clust_col[as.character(clust_res)]
+  names(Clust_colors) <- names(clust_res)
+  return(Clust_colors)
 }
 
-plotDendroAndColors <- function (dendro, colors, groupLabels = NULL, rowText = NULL,
-                                 rowTextAlignment = c("left", "center", "right"),
-                                 rowTextIgnore = NULL, textPositions = NULL, setLayout = TRUE,
-                                 autoColorHeight = TRUE, colorHeight = 0.2, colorHeightBase = 0.2,
-                                 colorHeightMax = 0.6, rowWidths = NULL, dendroLabels = NULL,
-                                 addGuide = FALSE, guideAll = FALSE, guideCount = 50, guideHang = 0.2,
-                                 addTextGuide = FALSE, cex.colorLabels = 0.8, cex.dendroLabels = 0.9,
-                                 cex.rowText = 0.8, marAll = c(1, 5, 3, 1), saveMar = TRUE,
-                                 abHeight = NULL, abCol = "red", ...)
-{
-  oldMar = par("mar")
-  if (!is.null(dim(colors))) {
-    nRows = dim(colors)[2]
-  }
-  else nRows = 1
-  if (!is.null(rowText))
-    nRows = nRows + if (is.null(textPositions))
-      nRows
-  else length(textPositions)
-  if (autoColorHeight)
-    colorHeight = colorHeightBase + (colorHeightMax - colorHeightBase) *
-      (1 - exp(-(nRows - 1)/6))
-  if (setLayout)
-    layout(matrix(c(1:2), 2, 1), heights = c(1 - colorHeight,
-                                             colorHeight))
-  par(mar = c(0, marAll[2], marAll[3], marAll[4]))
-  plot(dendro, labels = dendroLabels, cex = cex.dendroLabels,
-       ...)
-  if (addGuide)
-    addGuideLines(dendro, count = if (guideAll)
-      length(dendro$height) + 1
-      else guideCount, hang = guideHang)
-  if (!is.null(abHeight))
-    abline(h = abHeight, col = abCol)
-  par(mar = c(marAll[1], marAll[2], 0, marAll[4]))
-  plotColorUnderTree(dendro, colors, groupLabels, cex.rowLabels = cex.colorLabels,
-                     rowText = rowText, rowTextAlignment = rowTextAlignment,
-                     rowTextIgnore = rowTextIgnore, textPositions = textPositions,
-                     cex.rowText = cex.rowText, rowWidths = rowWidths, addTextGuide = addTextGuide)
-  if (saveMar)
-    par(mar = oldMar)
+plotDendroAndColors <- function(dendro,clust_res){
+  p1 <- ggdendro::ggdendrogram(dendro, rotate = FALSE, labels = FALSE,leaf_labels = FALSE) +
+    ggplot2::scale_x_discrete(expand = c(0,0))
+  Clust_id <- factor(unique(clust_res))
+  Clust_col <- standardColors(length(Clust_id))
+  Clust_col[Clust_id == 0] <- "gray"
+  names(Clust_col) <- Clust_id
+  clust_res <- data.frame(gene = factor(dendro$labels,levels=dendro$labels[dendro$order]), clust = clust_res)
+  p2<-ggplot2::ggplot(clust_res,ggplot2::aes(gene,y=1,fill=factor(clust))) + ggplot2::geom_tile() +
+    ggplot2::scale_fill_manual(values = Clust_col, breaks = Clust_id)  +
+    ggplot2::theme(axis.title=ggplot2::element_blank(),
+                  axis.ticks=ggplot2::element_blank(),
+                  axis.text=ggplot2::element_blank(),
+                  legend.position="none")
+  gp1<-ggplot2::ggplotGrob(p1)
+  gp2<-ggplot2::ggplotGrob(p2)
+
+  maxWidth = grid::unit.pmax(gp1$widths[2:5], gp2$widths[2:5])
+  gp1$widths[2:5] <- as.list(maxWidth)
+  gp2$widths[2:5] <- as.list(maxWidth)
+
+  gridExtra::grid.arrange(gp1, gp2, ncol=1,heights=c(4/5,1/5))
 }
 
 
@@ -130,14 +71,14 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   } else {
     # Set up the page
     grid::grid.newpage()
-    pushViewport(viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
+    grid::pushViewport(grid::viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
 
     # Make each plot, in the correct location
     for (i in 1:numPlots) {
       # Get the i,j matrix positions of the regions that contain this subplot
       matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
 
-      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+      print(plots[[i]], vp = grid::viewport(layout.pos.row = matchidx$row,
                                       layout.pos.col = matchidx$col))
     }
   }
