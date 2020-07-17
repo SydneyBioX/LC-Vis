@@ -1,3 +1,17 @@
+standardColors <- function(n = NULL)
+{
+  load("Color.RData")
+  if (is.null(n))
+    return(color_scope)
+  if ((n > 0) && (n <= length(color_scope))) {
+    return(color_scope[c(1:n)])
+  }
+  else {
+    stop("Invalid number of standard colors requested.")
+  }
+}
+
+
 labels2colors <- function (labels, zeroIsGrey = TRUE, colorSeq = NULL, naColor = "grey",
           commonColorCode = TRUE)
 {
@@ -95,7 +109,6 @@ plotDendroAndColors <- function (dendro, colors, groupLabels = NULL, rowText = N
 
 
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-  library(grid)
 
   # Make a list from the ... arguments and plotlist
   plots <- c(list(...), plotlist)
@@ -116,8 +129,8 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 
   } else {
     # Set up the page
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    grid::grid.newpage()
+    pushViewport(viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
 
     # Make each plot, in the correct location
     for (i in 1:numPlots) {
