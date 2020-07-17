@@ -1,23 +1,22 @@
-#options(jave.parameters = "-Xmx1024m")
-#pkgs<- c("shiny","shinyjs","shinythemes","WGCNA","dynamicTreeCut","reshape2",
-#         "ggplot2","plotly","fields","visNetwork","grid","tidyverse",
-#         "DT","directlabels","psych","GA","mclust")
-#pkg_type <- c("C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C")
+options(jave.parameters = "-Xmx1024m")
+pkgs<- c("shiny","shinyjs","shinythemes","dynamicTreeCut","reshape2",
+         "ggplot2","fields","visNetwork","grid","DT","directlabels","GA","ggdendro","gridExtra")
+pkg_type <- c("C","C","C","C","C","C","C","C","C","C","C","C","C","C")
 
-#if(!require("BiocManager")) install.packages("BiocManager",update = F,ask = F)
-#for (i in 1:length(pkgs)){
-#    pkg <- pkgs[i]
-#    test <- require(pkg,character.only = T)
-#    if(!test){
-#        if(pkg_type[i] == "C"){
-#            install.packages(pkg,ask = F,update = F)
-#            require(pkg,character.only = T)
-#        }else{
-#            BiocManager::install(pkg,ask = F,update = F)
-#            library(pkg,character.only = T)
-#        }
-#    }
-#}
+if(!require("BiocManager")) install.packages("BiocManager",update = F,ask = F)
+for (i in 1:length(pkgs)){
+    pkg <- pkgs[i]
+    test <- require(pkg,character.only = T)
+    if(!test){
+        if(pkg_type[i] == "C"){
+            install.packages(pkg,ask = F,update = F)
+            require(pkg,character.only = T)
+        }else{
+            BiocManager::install(pkg,ask = F,update = F)
+            library(pkg,character.only = T)
+        }
+    }
+}
 
 
 
