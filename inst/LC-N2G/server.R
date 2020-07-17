@@ -9,6 +9,11 @@ shinyServer(function(input, output,session) {
   mabscor = reactive(as.numeric(input$mabscor))
   maxcpm = reactive(as.numeric(input$maxcpm))
 
+#  showModal(modalDialog(
+#    footer = "./readme.html"
+#    easyClose = TRUE
+#  ))
+
   #preprocessing
   observeEvent(input$preprocess,
                {output$Preprocess <-

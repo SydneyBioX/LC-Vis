@@ -1,5 +1,55 @@
+standardColors <- function(n = NULL)
+{
+  load("Color.RData")
+  if (is.null(n))
+    return(color_scope)
+  if ((n > 0) && (n <= length(color_scope))) {
+    return(color_scope[c(1:n)])
+  }
+  else {
+    stop("Invalid number of standard colors requested.")
+  }
+}
+
+
+labels2colors <- function (clust_res)
+{
+  Clust_id <- factor(unique(clust_res))
+  Clust_col <- standardColors(length(Clust_id))
+  Clust_col[Clust_id == 0] <- "gray"
+  names(Clust_col) <-Clust_id
+  Clust_colors <- Clust_col[as.character(clust_res)]
+  names(Clust_colors) <- names(clust_res)
+  return(Clust_colors)
+}
+
+plotDendroAndColors <- function(dendro,clust_res){
+  p1 <- ggdendro::ggdendrogram(dendro, rotate = FALSE, labels = FALSE,leaf_labels = FALSE) +
+    ggplot2::scale_x_discrete(expand = c(0,0))
+  Clust_id <- factor(unique(clust_res))
+  Clust_col <- standardColors(length(Clust_id))
+  Clust_col[Clust_id == 0] <- "gray"
+  names(Clust_col) <- Clust_id
+  clust_res <- data.frame(gene = factor(dendro$labels,levels=dendro$labels[dendro$order]), clust = clust_res)
+  p2<-ggplot2::ggplot(clust_res,ggplot2::aes(gene,y=1,fill=factor(clust))) + ggplot2::geom_tile() +
+    ggplot2::scale_fill_manual(values = Clust_col, breaks = Clust_id)  +
+    ggplot2::theme(axis.title=ggplot2::element_blank(),
+                  axis.ticks=ggplot2::element_blank(),
+                  axis.text=ggplot2::element_blank(),
+                  legend.position="none")
+  gp1<-ggplot2::ggplotGrob(p1)
+  gp2<-ggplot2::ggplotGrob(p2)
+
+  maxWidth = grid::unit.pmax(gp1$widths[2:5], gp2$widths[2:5])
+  gp1$widths[2:5] <- as.list(maxWidth)
+  gp2$widths[2:5] <- as.list(maxWidth)
+
+  gridExtra::grid.arrange(gp1, gp2, ncol=1,heights=c(4/5,1/5))
+}
+
+
+
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-  library(grid)
 
   # Make a list from the ... arguments and plotlist
   plots <- c(list(...), plotlist)
@@ -20,15 +70,15 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 
   } else {
     # Set up the page
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    grid::grid.newpage()
+    grid::pushViewport(grid::viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
 
     # Make each plot, in the correct location
     for (i in 1:numPlots) {
       # Get the i,j matrix positions of the regions that contain this subplot
       matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
 
-      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+      print(plots[[i]], vp = grid::viewport(layout.pos.row = matchidx$row,
                                       layout.pos.col = matchidx$col))
     }
   }

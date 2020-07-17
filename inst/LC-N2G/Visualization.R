@@ -91,25 +91,25 @@ Visula_clust_z <- function(xaxis,yaxis,zaxis1,mclust,scalez,scalexy){
     p1 = lc_test(D,M,gene_mean)
     plotres[[4*i - 3]] = Visual_contour(x,y,gene_mean) +
       ggplot2::labs(x = xaxis,y = yaxis,fill = zaxis1[i],title = paste0("mean of cluster ",zaxis1[i],"(p-value: ",p1,").")) +
-      ggplot2::scale_fill_gradientn(colours = GA::jet.colors(256)) +
+      ggplot2::scale_fill_gradientn(colours = jet.colors(256)) +
       ggplot2::geom_point(data = data.frame(x = x,y = y),ggplot2::aes(x = x,y = y),shape = 4) + ggplot2::theme_classic()
 
     p2 = lc_test(D,M,gene_var)
     plotres[[4*i - 2]] = Visual_contour(x,y,gene_var) +
       ggplot2::labs(x = xaxis,y = yaxis,fill = zaxis1[i],title = paste0("variance of cluster ",zaxis1[i],"(p-value: ",p2,").")) +
-      ggplot2::scale_fill_gradientn(colours = GA::jet.colors(256)) +
+      ggplot2::scale_fill_gradientn(colours = jet.colors(256)) +
       ggplot2::geom_point(data = data.frame(x = x,y = y),ggplot2::aes(x = x,y = y),shape = 4) + ggplot2::theme_classic()
 
     p3 = lc_test(D,M,gene_eigen)
     plotres[[4*i - 1]] = Visual_contour(x,y,gene_eigen) +
       ggplot2::labs(x = xaxis,y = yaxis,fill = zaxis1[i],title = paste0("eigen-gene of cluster ",zaxis1[i],"(p-value: ",p3,").")) +
-      ggplot2::scale_fill_gradientn(colours = GA::jet.colors(256)) +
+      ggplot2::scale_fill_gradientn(colours = jet.colors(256)) +
       ggplot2::geom_point(data = data.frame(x = x,y = y),ggplot2::aes(x = x,y = y),shape = 4) + ggplot2::theme_classic()
 
     p4 = lc_test(D,M,gene_sel)
     plotres[[4*i]] = Visual_contour(x,y,gene_sel) +
       ggplot2::labs(x = xaxis,y = yaxis,fill = zaxis1[i],title = paste0(gene_sel_name,"(cluster:",zaxis1[i]," p-value:",p4,").")) +
-      ggplot2::scale_fill_gradientn(colours = GA::jet.colors(256)) +
+      ggplot2::scale_fill_gradientn(colours = jet.colors(256)) +
       ggplot2::geom_point(data = data.frame(x = x,y = y),ggplot2::aes(x = x,y = y),shape = 4) + ggplot2::theme_classic()
   }
 
