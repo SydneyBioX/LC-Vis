@@ -12,14 +12,18 @@ Shiny app(LC-N2G) explores the relationship between nutrition and its correspond
 - shinyjs ≥ 1.1
 - DT ≥ 0.13
 - directlabels ≥ 2020.1.31
+- mclust ≥ 5.4.5
 - GA ≥ 3.2
+- WGCNA ≥ 1.69
 - tidyverse ≥ 1.3.0
+- plotly ≥ 4.9.2
 - visNetwork ≥ 2.0.9
+- limma ≥ 3.42.2
 - dynamicTreeCut ≥ 1.63-1
+- psych ≥ 1.9.12.31
 - fields ≥ 10.3
+- plotly ≥ 4.9.2
 - reshape2 ≥ 1.4.3
-- ggdendro ≥ 0.1-20
-- gridExtra ≥ 2.3
 
 ### Get started
 

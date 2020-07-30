@@ -31,11 +31,11 @@ shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                     #       fluidRow(tags$img(src="./Fig1-4.jpg",width = "800px",height = "1200px")
                      #          )),
 
-                   tabPanel("Data Preprocess",
+                   tabPanel("Data Preprocessing",
                             sidebarLayout(
                               sidebarPanel(
-                                    fileInput("GE","Browser your gene expression input file (.csv, row sample)", accept = ".csv"),
-                                    fileInput("N","Browser your nutrition input file (.csv, row sample)", accept = ".csv"),
+                                    fileInput("GE","Browse  your gene expression input file (.csv, row sample)", accept = ".csv"),
+                                    fileInput("N","Browse  your nutrition input file (.csv, row sample)", accept = ".csv"),
                                     numericInput("mcpm","Filter out gene expression (cpm) below:",5),
                                     numericInput("maxcpm","Filter out gene expression (cpm) above:",500),
                                     numericInput("mvar","Filter out gene expression (cpm) sd below :",0.1),
