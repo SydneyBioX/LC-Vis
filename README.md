@@ -7,7 +7,9 @@ Shiny app(LC-N2G) explores the relationship between nutrition and its correspond
 ![](./img/fig1.png)
 	
 <div align=center>
-Figure 1 Overall workflow of LC-N2G. Matrix G anf N represent the input matrix of gene and nutrition information, respectively. In the first step we calculate the Local consistency statistics (LC-Stat) of combinations with a gene of interest and find combinations of nutrients with small LC-Stat. Then the LC-Test is performed to evaluate the relationship between combination of nutrients with gene. Finally the Nutrition Geometry Framework(NGF)[2] is performed for the selected combination and genes.
+	
+Figure 1 Overall workflow of LC-N2G. Matrix G anf N represent the input matrix of gene and nutrition information, respectively. In the first step we calculate the Local consistency statistics (LC-Stat) of combinations with a gene of interest and find combinations of nutrients with small LC-Stat. Then the LC-Test is performed to evaluate the relationship between combination of nutrients with gene. Finally the Nutrition Geometry Framework (NGF)[2] is performed for the selected combination and genes.
+
 </div>
 
 ## Get Started
@@ -51,7 +53,7 @@ This part preprocesses the gene and nutrition data.
  
 ![](./img/fig2.png)
 	
-We have implemented different preprocessing methods. One can upload its own dataset (in csv format, each row represents a sample) or use the default dataset (no upload needed) by clicking Analysis (GSE85998). Different threshold for filtering is provided and the resulting plot will appear in the right panel after clicking on analysis.
+We have implemented different preprocessing methods. Either upload a dataset (in csv format, each row represents a sample) or otherwise the default data set can be used (no upload needed) by clicking Analysis (GSE85998). Different threshold for filtering is provided and the resulting plot will appear in the right panel after clicking on analysis.
 
 In the default dataset, we already normalised using Cyclophilin as the endogenous control, so just use "None" as the normalization method.
 
