@@ -7,7 +7,7 @@ Shiny app(LC-N2G) explores the relationship between nutrition and its correspond
 ![](./img/fig1.png)
 	
 
-Figure 1 Overall workflow of LC-N2G. Matrix G anf N represent the input matrix of gene and nutrition information, respectively. In the first step we calculate the Local consistency statistics (LC-Stat) of combinations with a gene of interest and find combinations of nutrients with small LC-Stat. Then the LC-Test is performed to evaluate the relationship between combination of nutrients with gene. Finally the Nutrition Geometry Framework (NGF)[2] is performed for the selected combination and genes.
+> Figure 1 Overall workflow of LC-N2G. Matrix G anf N represent the input matrix of gene and nutrition information, respectively. In the first step we calculate the Local consistency statistics (LC-Stat) of combinations with a gene of interest and find combinations of nutrients with small LC-Stat. Then the LC-Test is performed to evaluate the relationship between combination of nutrients with gene. Finally the Nutrition Geometry Framework (NGF)[2] is performed for the selected combination and genes.
 
 
 ## Get Started
@@ -57,7 +57,7 @@ In the default dataset, we already normalised using Cyclophilin as the endogenou
 
 ### Gene Clustering
 
-In order to get representitive genes for the second visualization step, we provide a gene cluster method. If some special gene expressions are of interest, this step can be skipped.
+In order to get representative genes for the second visualization step, we provide a gene cluster method. If some special gene expressions are of interest, this step can be skipped.
 
 ![](./img/fig3.png)	
 	
