@@ -36,6 +36,8 @@ shinyUI(fluidPage(theme = shinythemes::shinytheme("cerulean"),
                               sidebarPanel(
                                     fileInput("GE","Browse  your gene expression input file (.csv, row sample)", accept = ".csv"),
                                     fileInput("N","Browse  your nutrition input file (.csv, row sample)", accept = ".csv"),
+                                    downloadButton("DemoN","Download demo nutrition data"),
+                                    downloadButton("DemoG","Download demo gene data"),
                                     numericInput("mcpm","Filter out gene expression (cpm) below:",5),
                                     numericInput("maxcpm","Filter out gene expression (cpm) above:",500),
                                     numericInput("mvar","Filter out gene expression (cpm) sd below :",0.1),

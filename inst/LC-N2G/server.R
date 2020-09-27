@@ -14,6 +14,17 @@ shinyServer(function(input, output,session) {
 #    easyClose = TRUE
 #  ))
 
+
+  N_d <- reactive({
+    load("Preprocess.RData")
+    Nutrition <- data$MacroNutrition
+  })
+
+  GE_d <- reactive({
+    load("Preprocess.RData")
+    GE <- data$gene_cpm
+  })
+
   #preprocessing
 
   output$DemoN<- downloadHandler(filename = function() {
