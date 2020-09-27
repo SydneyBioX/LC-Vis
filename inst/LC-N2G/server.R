@@ -15,6 +15,25 @@ shinyServer(function(input, output,session) {
 #  ))
 
   #preprocessing
+
+  output$DemoN<- downloadHandler(filename = function() {
+    paste("Nutrition_Demo", ".csv", sep="")
+  },
+  content = function(file) {
+    dat1 = N_d()
+    write.csv(dat1, file)
+  }
+  )
+
+  output$DemoG<- downloadHandler(filename =function() {
+    paste("Gene Expression_demo", ".csv", sep="")
+  },
+  content = function(file) {
+    dat1 = GE_d()
+    write.csv(dat1, file)
+  }
+  )
+
   observeEvent(input$preprocess,
                {output$Preprocess <-
                  renderPlot(

@@ -8,8 +8,8 @@ preprocessing <- function(GE,N,mcpm,maxcpm,mvar,mabscor,mnorm){
   }
   tryCatch(
     {
-      gene_cpm <- read.csv(file = GE)
-      MacroNutrition <- read.csv(file = N)
+      gene_cpm <- read.csv(file = GE,header = T,row.names = 1)
+      MacroNutrition <- read.csv(file = N,header = T,row.names = 1)
     },
     error = function(e) {
       load("data.RData")
