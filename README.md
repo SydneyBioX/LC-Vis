@@ -53,7 +53,9 @@ This part preprocesses the gene and nutrition data.
 	
 We have implemented different preprocessing methods. Either upload a dataset (in csv format, each row represents a sample) or otherwise the default data set can be used (no upload needed) by clicking Analysis (GSE85998). Different threshold for filtering is provided and the resulting plot will appear in the right panel after clicking on analysis.
 
-In the default dataset, we already normalised using Cyclophilin as the endogenous control, so just use "None" as the normalization method.
+In the default dataset, we already normalised using rma, so just use "None" as the transformation method.
+
+A example input file can be downloaded from the download button, which serve as a illustration for user's input.
 
 ### Gene Clustering
 
