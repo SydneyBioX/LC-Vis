@@ -49,7 +49,7 @@ This shiny app has three parts: Data Preprocessing, Gene Clustering and Visualiz
 
 This part preprocesses the gene and nutrition data. 
  
-![](./img/fig2.png)
+![](./img/fig2_1.png)
 	
 We have implemented different preprocessing methods. Either upload a dataset (in csv format, each row represents a sample) or otherwise the default data set can be used (no upload needed) by clicking Analysis (GSE85998). Different threshold for filtering is provided and the resulting plot will appear in the right panel after clicking on analysis.
 
